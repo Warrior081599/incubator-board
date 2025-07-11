@@ -73,19 +73,6 @@ const CardFooter = React.forwardRef<
 ));
 CardFooter.displayName = "CardFooter";
 
-// Custom CardAction component for the sign-in/sign-up forms
-const CardAction = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex items-center justify-end", className)}
-    {...props}
-  />
-));
-CardAction.displayName = "CardAction";
-
 export {
   Card,
   CardHeader,
@@ -93,5 +80,4 @@ export {
   CardTitle,
   CardDescription,
   CardContent,
-  CardAction,
 };

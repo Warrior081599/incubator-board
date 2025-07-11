@@ -12,7 +12,6 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-  CardAction,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -109,15 +108,6 @@ export function AuthForm({ mode }: AuthFormProps) {
               ? "Enter your details below to create your account and start organizing your ideas"
               : "Enter your credentials below to access your idea board"}
           </CardDescription>
-          <CardAction>
-            <Link href={isSignUp ? "/signin" : "/signup"}>
-              <Button variant="link" className="p-0">
-                {isSignUp
-                  ? "Already have an account? Sign in"
-                  : "Don't have an account? Sign up"}
-              </Button>
-            </Link>
-          </CardAction>
         </CardHeader>
 
         <CardContent>
@@ -125,7 +115,7 @@ export function AuthForm({ mode }: AuthFormProps) {
             <div className="flex flex-col gap-4">
               {/* Error Message */}
               {error && (
-                <div className="text-sm text-destructive bg-destructive/10 p-3 rounded-md">
+                <div className="text-sm text-red-600 bg-red-50 p-3 rounded-md">
                   {error}
                 </div>
               )}
@@ -172,12 +162,12 @@ export function AuthForm({ mode }: AuthFormProps) {
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
                   {!isSignUp && (
-                    <a
+                    <Link
                       href="#"
                       className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                     >
                       Forgot your password?
-                    </a>
+                    </Link>
                   )}
                 </div>
                 <Input
@@ -234,6 +224,25 @@ export function AuthForm({ mode }: AuthFormProps) {
             {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             {isSignUp ? "Sign up" : "Sign in"} with Google
           </Button>
+
+          {/* Link to switch between sign in and sign up */}
+          <div className="text-center text-sm text-gray-600 mt-4">
+            {isSignUp ? (
+              <>
+                Already have an account?{" "}
+                <Link href="/signin" className="text-blue-600 hover:underline">
+                  Sign in
+                </Link>
+              </>
+            ) : (
+              <>
+                Don't have an account?{" "}
+                <Link href="/signup" className="text-blue-600 hover:underline">
+                  Sign up
+                </Link>
+              </>
+            )}
+          </div>
         </CardFooter>
       </Card>
     </div>
